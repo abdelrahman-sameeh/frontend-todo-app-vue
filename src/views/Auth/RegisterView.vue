@@ -72,7 +72,9 @@
       </form>
       <span>
         if you have an email
-        <router-link class="loginBtn" to="/login"> click here </router-link>
+        <router-link class="loginBtn loginLocation" to="/login">
+          click here
+        </router-link>
       </span>
     </div>
   </div>
@@ -126,13 +128,20 @@ export default {
       return emailPattern.test(email);
     },
     register: function () {
-      this.$store.dispatch("register", this.formData);
-
-      if (!this.getError) {
-          const loginBtn = document.querySelector(".loginBtn");
+      const interval = setInterval(() => {
+        if (
+          !this.getError &&
+          document.querySelector(".loginLocation")
+        ) {
+          const loginBtn = document.querySelector(".loginLocation");
           loginBtn.click();
-      }
-      
+        } else {
+          clearInterval(interval);
+        }
+      }, 100);
+
+      this.$store.dispatch("register", this.formData);
+      this.$store.dispatch("clearErrorFromState");
     },
   },
 };

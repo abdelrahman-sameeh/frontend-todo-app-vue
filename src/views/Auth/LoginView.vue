@@ -79,7 +79,6 @@ export default {
   },
   methods: {
     handleSubmit() {
-      
       this.errors = {};
 
       if (!this.formData.email) {
@@ -101,16 +100,19 @@ export default {
       return emailPattern.test(email);
     },
     login: function () {
+      
+      const interval = setInterval(() => {
+        if (!this.getError && document.querySelector(".homeLocation")) {
+          const homeLocation = document.querySelector(".homeLocation");
+          homeLocation.click();
+        }else{
+          clearInterval(interval)
+        }
+      });
 
-      if (!this.$store.state.authModule.error) {
-        const homeLocation = document.querySelector(".homeLocation");
-        homeLocation.click();
-      }
       this.$store.dispatch("clearErrorFromState");
-
       this.$store.dispatch("login", this.formData);
     },
-    
   },
 };
 </script>

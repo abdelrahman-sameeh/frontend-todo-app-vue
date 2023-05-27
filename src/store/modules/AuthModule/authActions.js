@@ -9,6 +9,9 @@ export const authActions = {
          await baseURL.post('/signup', data)
             .then((res) => {
                if (res.data.error) {
+
+                  commit('setError', res.data.error)
+
                   notify({
                      type: 'error',
                      title: "Failed",

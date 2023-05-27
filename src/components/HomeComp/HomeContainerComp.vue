@@ -2,7 +2,7 @@
   <EditComp />
   <div class="container home-container mt-5">
     <div class="d-flex my-3 justify-content-between align-items-center">
-      <p class="name fs-5 bold text-capitalize">Hello MR {{ getUsername }}</p>
+      <p class="name fs-5 bold text-capitalize">Hello {{ getUsername }}</p>
       <router-link class="btn btn-danger logout" to="/login" @click="logout()">
         Logout
         <font-awesome-icon icon="fa-solid fa-right-from-bracket" />
